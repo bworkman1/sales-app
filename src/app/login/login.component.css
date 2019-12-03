@@ -1,0 +1,20 @@
+#loginLogo {
+  margin-bottom: 25px;
+}
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-inputs > * {
+  width: 100%;
+}
+#loginBtn {
+  width: 100%;
+}
+.hfc-login-form {
+  border: 1px solid #efefef;
+}
+.mat-input-element {
+  text-align: center;
+}

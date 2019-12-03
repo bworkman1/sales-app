@@ -1,0 +1,33 @@
+<mat-grid-list cols="3" rowHeight="1:1">
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="hfc-login-form">
+      <mat-card-content>
+        <form>
+          <div class="login-inputs">
+            <img id="loginLogo" src="assets/images/vcf-asi-logo.jpg" alt="ASI/VCF Login HFC Sales Login">
+
+            <mat-form-field hintLabel="">
+              <input matInput #employeeNumber (change)="checkLoginType(employeeNumber.value)" maxlength="10"
+                     placeholder="Enter Employee Number">
+            </mat-form-field>
+
+            <mat-form-field *ngIf="!isHidden">
+              <input matInput #userId maxlength="15" placeholder="Enter User ID" autofocus>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="">
+              <input matInput #password type="password" maxlength="15" placeholder="Enter Password">
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button id="loginBtn" type="submit" mat-flat-button color="primary">Login</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>
