@@ -1,34 +1,42 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   public isHidden = 1;
 
-  loginForm = new FormGroup({
-    empNumber: new FormControl(''),
-    userId: new FormControl(''),
-    password: new FormControl('')
-  });
+  loginForm: FormGroup;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private formBuilder: FormBuilder) {
+    this.createLoginForm();
   }
 
   ngOnInit() {
-    console.log(this.userService.isUserLoggedIn());
+    console.log('Is the user logged in? ' + this.userService.isUserLoggedIn());
+  }
+
+  createLoginForm() {
+    this.loginForm = this.formBuilder.group({
+      empNumber: [],
+      userId: [],
+      password: []
+    });
   }
 
   checkLoginType(empNumber): void {
     this.isHidden = empNumber > 0 && empNumber < 1000 ? 0 : 1;
   }
 
-  login() {
-    console.log(this.loginForm.value);
+  submitLogin() {
+    this.userService.authenticateUser(this.loginForm).subscribe(resp => {
+    });
   }
 
 }
