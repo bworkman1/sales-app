@@ -14,3 +14,12 @@ body {
 .text-center {
   text-align: center;
 }
+.text-error {
+  color: #ff4b46;
+}
+
+/* SNACK BAR CLASSES */
+.snackBarError {
+  background: #f00;
+  color: #fff;
+}

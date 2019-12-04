@@ -1,0 +1,7 @@
+.mat-drawer {
+  height: 100%;
+  position: fixed;
+}
+.mat-drawer-container {
+  background: inherit;
+}

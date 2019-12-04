@@ -6,8 +6,7 @@ import {catchError} from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
+    'Content-Type': 'application/json'
   })
 };
 
@@ -16,8 +15,7 @@ const httpOptions = {
 })
 export class UserService {
 
-  private readonly CurrentUser;
-  private authUserUrl = 'https://reqres.in/api/login';
+  private authUserUrl = 'http://localhost:8080/fake_db_returns/process.php?call=auth_user';
 
   const;
   httpOptions = {
@@ -27,17 +25,14 @@ export class UserService {
   };
 
   constructor(private http: HttpClient) {
-    this.CurrentUser = localStorage.getItem('currentUser') ? localStorage.getItem('currentUser') : '';
   }
 
   isUserLoggedIn() {
-    if (!this.CurrentUser) {
-      return false;
-    } else {
-      const session = this.CurrentUser.session_id;
-      const hfc = this.CurrentUser.hfc;
-      const store = this.CurrentUser.store;
-      if (session && store && hfc) {
+    if (localStorage.getItem('token')) {
+      const hfcName = localStorage.getItem('hfc_name');
+      const hfcNumber = localStorage.getItem('hfc_number');
+      const storeNumber = localStorage.getItem('store_number');
+      if (hfcName && hfcNumber && storeNumber) {
         return true;
       }
     }
@@ -45,16 +40,19 @@ export class UserService {
   }
 
   authenticateUser(creds: FormGroup): Observable<FormGroup> {
-    return this.http.post<FormGroup>(this.authUserUrl, creds.value, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.error(err.message);
-        })
-      );
+    return this.http.post<FormGroup>(this.authUserUrl, creds.value, this.httpOptions);
   }
 
   getUser() {
-    return this.CurrentUser;
+    const user = [];
+    const keys = Object.keys(localStorage);
+    for (const name in keys) {
+      if (keys.hasOwnProperty(name)) {
+        user[name] = localStorage.getItem(keys[name]);
+      }
+    }
+
+    return user;
   }
 
 }

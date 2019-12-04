@@ -25,6 +25,8 @@
         </div>
       </mat-card-content>
 
+      <div *ngIf="errorMsg" class="text-error">{{errorMsg}}</div>
+
       <mat-card-actions>
         <button id="loginBtn" type="submit" mat-raised-button color="primary">Login</button>
       </mat-card-actions>
