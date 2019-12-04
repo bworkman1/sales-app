@@ -1,0 +1,8 @@
+<mat-list>
+  <h3 mat-subheader>Menu Options</h3>
+  <mat-list-item *ngFor="let folder of folders">
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <h4 mat-line><a href="">{{folder.name}}</a></h4>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>

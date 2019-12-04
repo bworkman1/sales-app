@@ -17,13 +17,17 @@ import { PageComponent } from './main/page/page.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import { MenuComponent } from './main/components/menu/menu.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PageComponent
+    PageComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatSnackBarModule,
     MatSidenavModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
